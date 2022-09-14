@@ -1,10 +1,8 @@
 package com.bbj.sfgdi.controllers;
 
-import com.bbj.sfgdi.services.GreetingServiceImpl;
+import com.bbj.sfgdi.services.PropertyGreetingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PropertyInjectedControllerTest {
 
@@ -14,7 +12,7 @@ class PropertyInjectedControllerTest {
     void setUp() {
         //mimicking what the framework is doing, injection by public properties
         controller = new PropertyInjectedController();
-        controller.greetingService = new GreetingServiceImpl();
+        controller.greetingService = new PropertyGreetingService();
     }
 
     @Test

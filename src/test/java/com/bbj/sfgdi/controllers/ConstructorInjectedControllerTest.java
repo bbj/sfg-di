@@ -1,10 +1,8 @@
 package com.bbj.sfgdi.controllers;
 
-import com.bbj.sfgdi.services.GreetingServiceImpl;
+import com.bbj.sfgdi.services.ConstructorGreetingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ConstructorInjectedControllerTest {
 
@@ -14,7 +12,7 @@ class ConstructorInjectedControllerTest {
     void setUp() {
         //mimicking the Spring Framework injection
         constructorInjectedController =
-                new ConstructorInjectedController(new GreetingServiceImpl());
+                new ConstructorInjectedController(new ConstructorGreetingService());
     }
 
     @Test
