@@ -15,9 +15,9 @@ public class SfgDiApplication {
 		//run() returns a handle to the application context
 		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
 
+		System.out.println("------------ Property Injected");
 		MyController myController = (MyController) ctx.getBean("myController");
-		String greeting = myController.sayHello();
-		System.out.println(greeting);
+		System.out.println(myController.sayHello());
 
 		//show some typical errors
 		System.out.println("------------ Property Injected");

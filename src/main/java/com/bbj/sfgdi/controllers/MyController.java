@@ -1,13 +1,19 @@
 package com.bbj.sfgdi.controllers;
 
+import com.bbj.sfgdi.services.GreetingService;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class MyController {
 
-    public String sayHello() {
-        System.out.println("Hello World!!!");
+    private final GreetingService greetingService;
 
-        return "Hi Folks!";
+    //@Autowired not needed for constructors
+    public MyController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
+    public String sayHello() {
+        return greetingService.sayGreeding();
     }
 }
