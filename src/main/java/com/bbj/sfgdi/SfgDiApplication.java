@@ -1,9 +1,6 @@
 package com.bbj.sfgdi;
 
-import com.bbj.sfgdi.controllers.ConstructorInjectedController;
-import com.bbj.sfgdi.controllers.MyController;
-import com.bbj.sfgdi.controllers.PropertyInjectedController;
-import com.bbj.sfgdi.controllers.SetterInjectedController;
+import com.bbj.sfgdi.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -15,7 +12,11 @@ public class SfgDiApplication {
 		//run() returns a handle to the application context
 		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
 
-		System.out.println("------------ Property Injected");
+		System.out.println("------------ i18nController");
+		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+		System.out.println(i18nController.sayHello());
+
+		System.out.println("------------ myController");
 		MyController myController = (MyController) ctx.getBean("myController");
 		System.out.println(myController.sayHello());
 
