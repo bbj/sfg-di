@@ -1,9 +1,8 @@
 package com.bbj.sfgdi.services;
 
-import org.springframework.stereotype.Service;
-
-@Service
+//@Service config moved to com.bbj.sfgdi.config.GreetingServiceConfig, performance reason
 public class ConstructorGreetingService implements GreetingService {
+
     @Override
     public String sayGreeding() {
         return "Hello World - Constructor";
