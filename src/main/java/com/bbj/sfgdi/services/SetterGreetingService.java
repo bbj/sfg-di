@@ -4,7 +4,7 @@ package com.bbj.sfgdi.services;
 public class SetterGreetingService implements GreetingService {
 
     @Override
-    public String sayGreeding() {
+    public String sayGreeting() {
         return "Hello World - Setter";
     }
 }

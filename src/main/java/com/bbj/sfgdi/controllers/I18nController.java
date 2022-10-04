@@ -14,6 +14,6 @@ public class I18nController {
     }
 
     public String sayHello() {
-        return greetingService.sayGreeding();
+        return greetingService.sayGreeting();
     }
 }
