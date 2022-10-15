@@ -1,15 +1,47 @@
 package com.bbj.sfgdi.config;
 
+import com.bbj.pets.PetService;
+import com.bbj.pets.PetServiceFactory;
+import com.bbj.sfgdi.datasource.FakeDataSource;
 import com.bbj.sfgdi.repositories.EnglishGreetingRepository;
 import com.bbj.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import com.bbj.sfgdi.services.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
 
+@PropertySource("classpath:datasource.properties")
+@ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
+
+    @Bean
+    FakeDataSource fakeDataSource(@Value("${bbj.username}") String username,
+                                  @Value("${bbj.password}") String password,
+                                  @Value("${bbj.jdbcUrl}") String jdbcUrl) {
+        FakeDataSource fakeDataSource = new FakeDataSource();
+        fakeDataSource.setUsername(username);
+        fakeDataSource.setPassword(password);
+        fakeDataSource.setJdbcUrl(jdbcUrl);
+        return fakeDataSource;
+    }
+
+    @Bean
+    PetServiceFactory petServiceFactory(){
+        return new PetServiceFactory();
+    }
+
+    //for this below, we need in application.properties: spring.profiles.active=cat,EN
+    @Profile({"dog", "default"})
+    @Bean
+    PetService dogPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("dog");
+    }
+
+    @Bean
+    @Profile("cat")
+    PetService catPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("cat");
+    }
 
     // here we cannot have method name = service name = i18nService again
     // so we use i18nSpanishGreetingService() which implies we specify
@@ -38,10 +70,12 @@ public class GreetingServiceConfig {
         return new PrimaryGreetingService();
     }
 
-    @Bean
-    ConstructorGreetingService constructorGreetingService() { //constructorGreetingService = name of Bean
-        return new ConstructorGreetingService();
-    }
+//    this bean is moved to XML configuration file, so we remove annotation
+//    and add annotation at the class level above to tell Spring to look in config XML file
+//    @Bean
+//    ConstructorGreetingService constructorGreetingService() { //constructorGreetingService = name of Bean
+//        return new ConstructorGreetingService();
+//    }
 
     @Bean
     PropertyGreetingService propertyGreetingService() { //propertyGreetingService = name of Bean
