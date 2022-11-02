@@ -1,0 +1,4 @@
+bbj:
+    username: superuserYmlDev
+    password: dbPasswordYmlDev
+    jdbcUrl: someUrlForDbYmlDev

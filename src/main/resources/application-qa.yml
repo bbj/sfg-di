@@ -1,0 +1,4 @@
+bbj:
+    username: superuserYmlQA
+    password: dbPasswordYmlQA
+    jdbcUrl: someUrlForDbYmlQA
