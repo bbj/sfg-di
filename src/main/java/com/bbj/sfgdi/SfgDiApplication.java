@@ -1,5 +1,6 @@
 package com.bbj.sfgdi;
 
+import com.bbj.sfgdi.config.SfgConfiguration;
 import com.bbj.sfgdi.controllers.*;
 import com.bbj.sfgdi.datasource.FakeDataSource;
 import com.bbj.sfgdi.services.PrototypeBean;
@@ -57,10 +58,17 @@ public class SfgDiApplication {
 		PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
 		System.out.println(prototypeBean2.getMyScope());
 
+		System.out.println("-------------- FakeDataSource -------");
 		FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
 		System.out.println(fakeDataSource.getUsername());
 		System.out.println(fakeDataSource.getPassword());
 		System.out.println(fakeDataSource.getJdbcUrl());
+
+		System.out.println("-------------- Config Props Binding Bean -------");
+		SfgConfiguration sfgConfiguration = ctx.getBean(SfgConfiguration.class);
+		System.out.println(sfgConfiguration.getUsername());
+		System.out.println(sfgConfiguration.getPassword());
+		System.out.println(sfgConfiguration.getJdbcUrl());
 	}
 
 }

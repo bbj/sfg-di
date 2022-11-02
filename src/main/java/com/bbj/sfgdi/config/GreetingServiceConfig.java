@@ -14,16 +14,29 @@ import org.springframework.context.annotation.*;
 @Configuration
 public class GreetingServiceConfig {
 
+
+//    @Bean
+//    FakeDataSource fakeDataSource(@Value("${bbj.username}") String username,
+//                                  @Value("${bbj.password}") String password,
+//                                  @Value("${bbj.jdbcUrl}") String jdbcUrl) {
+//        FakeDataSource fakeDataSource = new FakeDataSource();
+//        fakeDataSource.setUsername(username);
+//        fakeDataSource.setPassword(password);
+//        fakeDataSource.setJdbcUrl(jdbcUrl);
+//        return fakeDataSource;
+//    }
     @Bean
-    FakeDataSource fakeDataSource(@Value("${bbj.username}") String username,
-                                  @Value("${bbj.password}") String password,
-                                  @Value("${bbj.jdbcUrl}") String jdbcUrl) {
+    FakeDataSource fakeDataSource(SfgConfiguration sfgConfiguration) {
+
+        //sfgConfiguration is injected by Spring
+
         FakeDataSource fakeDataSource = new FakeDataSource();
-        fakeDataSource.setUsername(username);
-        fakeDataSource.setPassword(password);
-        fakeDataSource.setJdbcUrl(jdbcUrl);
+        fakeDataSource.setUsername(sfgConfiguration.getUsername());
+        fakeDataSource.setPassword(sfgConfiguration.getPassword());
+        fakeDataSource.setJdbcUrl(sfgConfiguration.getJdbcUrl());
         return fakeDataSource;
     }
+
 
     @Bean
     PetServiceFactory petServiceFactory(){
