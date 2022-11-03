@@ -7,9 +7,13 @@ import com.bbj.sfgdi.repositories.EnglishGreetingRepository;
 import com.bbj.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import com.bbj.sfgdi.services.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConstructorBinding;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
 
 //@PropertySource("classpath:datasource.properties")
+
+@EnableConfigurationProperties(SfgConstructorConfig.class)
 @ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
